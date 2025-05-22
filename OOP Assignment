@@ -1,0 +1,69 @@
+#Assignment 1: Design Your Own Class
+# Base class
+class Smartphone:
+    def __init__(self, brand, model, storage):
+        self.brand = brand
+        self.model = model
+        self.__storage = storage  # Encapsulated attribute
+
+    def get_storage(self):
+        return self.__storage
+
+    def set_storage(self, new_storage):
+        if new_storage > 0:
+            self.__storage = new_storage
+
+    def specs(self):
+        return f"{self.brand} {self.model} with {self.__storage}GB storage"
+
+    def perform_task(self):
+        return "Opening default apps..."
+        
+
+# Subclass with polymorphism
+class GamingPhone(Smartphone):
+    def __init__(self, brand, model, storage, gpu):
+        super().__init__(brand, model, storage)
+        self.gpu = gpu
+
+    def specs(self):
+        return f"{self.brand} {self.model} with {self.get_storage()}GB and {self.gpu} GPU"
+
+    def perform_task(self):
+        return "Launching high-performance game mode..."
+
+# Creating objects
+phone1 = Smartphone("Samsung", "Galaxy S22", 128)
+phone2 = GamingPhone("Asus", "ROG Phone 6", 256, "Adreno 730")
+
+# Using methods
+print(phone1.specs())
+print(phone2.specs())
+print(phone1.perform_task())
+print(phone2.perform_task())
+
+#Activity 2: Polymorphism Challenge
+class Vehicle:
+    def move(self):
+        pass  # Abstract method placeholder
+
+class Car(Vehicle):
+    def move(self):
+        return "🚗 Driving on the road"
+
+class Plane(Vehicle):
+    def move(self):
+        return "✈️ Flying in the sky"
+
+class Boat(Vehicle):
+    def move(self):
+        return "🚢 Sailing on the water"
+
+# Test polymorphism
+vehicles = [Car(), Plane(), Boat()]
+
+for vehicle in vehicles:
+    print(vehicle.move())
+
+
+
